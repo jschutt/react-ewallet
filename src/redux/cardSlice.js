@@ -10,20 +10,23 @@ export const getUser = createAsyncThunk("cards/getUser", async () => {
 const cardSlice = createSlice({
   name: "cards",
   initialState: {
-    cards: [
-      {
-        cardholder: "",
-        cardnumber: "",
-        expiry: "",
-        ccv: "",
-        type: "",
-        active: true,
-      },
-    ],
+    activeCard: {
+      cardholder: "Jonna Persson Schutt",
+      cardnumber: "1234123412341234",
+      expiry: "2121",
+      cvc: "212",
+      type: "VISA",
+      active: true,
+    },
+    cards: [],
     myData: null,
     status: null,
   },
   reducers: {
+    addCard: (state, action) => {
+      state.cards = state.cards.concat(action.payload)
+      console.log(state.cards)
+    },
       updateCard: (state, action) => {
         state.cards = action.payload;
         console.log(state.cards)
@@ -49,6 +52,6 @@ const cardSlice = createSlice({
   }
 });
 
-export const {updateCard} = cardSlice.actions;
+export const {updateCard, addCard} = cardSlice.actions;
 
 export default cardSlice.reducer;

@@ -1,7 +1,17 @@
-const Card = () => {
+import 'react-credit-cards/es/styles-compiled.css';
+import {useSelector} from 'react-redux'
+import Cards from 'react-credit-cards'
+
+const Card = ({name, number, expiry, cvc}) => {
     return (
         <div>
-            <h1>CARD</h1>
+            <Cards 
+            cvc={cvc}
+            expiry={expiry}
+            // focused={focus}
+            name={name}
+            number={number}
+            />
         </div>
     )
 }
