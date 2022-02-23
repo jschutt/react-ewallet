@@ -11,7 +11,6 @@ function App() {
           <Route exact path="/" render={(props) => <Home />}/>
           <Route path="/addcard" render={(props) => <AddCard />}/>
         </Switch>
-
       </header>
     </div>
   );
