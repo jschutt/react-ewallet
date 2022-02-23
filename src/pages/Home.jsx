@@ -25,6 +25,7 @@ const Home = () => {
             <h1>Home page</h1>
             <Card name={cardholder} number={cardnumber} expiry={expiry} cvc={cvc}/>
             <Link to={`/addcard`}><button>Add card</button></Link>
+            <CardList />
         </div>
     )
 }
