@@ -39,7 +39,9 @@ const cardSlice = createSlice({
       console.log(state.status)
     },
     [getUser.fulfilled]: (state, action) => {
-      state.myData = action.payload;
+      //state.myData = action.payload;
+      state.activeCard.cardholder = action.payload.name.first
+      //console.log(action.payload.name.first)
       state.status = "Completed!";
 
       //TODO: Byt ut vart API:n ska hamna
