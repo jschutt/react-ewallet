@@ -10,6 +10,8 @@ const AddCard = () => {
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
   const [type, setType] = useState("");
+  
+  //TODO: Fixa så att type blir dynamisk
 
   const dispatch = useDispatch();
 

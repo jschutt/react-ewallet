@@ -2,6 +2,7 @@ import 'react-credit-cards/es/styles-compiled.css';
 import Cards from 'react-credit-cards'
 
 const Card = ({name, number, expiry, cvc}) => {
+    //TODO: Lägg till focused
     return (
         <div>
             <Cards 

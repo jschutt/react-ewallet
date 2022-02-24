@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const getUser = createAsyncThunk("cards/getUser", async () => {
     const response = await fetch("https://randomuser.me/api/");
     const data = await response.json();
-    //console.log(data.results)
+    console.log(data)
     return data.results[0];
   });
 
@@ -28,6 +28,7 @@ const cardSlice = createSlice({
       console.log(state.cards)
     },
       updateCard: (state, action) => {
+        //TODO: Gör klart den här reducern
         state.cards = action.payload;
         console.log(state.cards)
       }

@@ -3,7 +3,7 @@ import Card from './Card'
 
 const CardList = () => {
     const {cards} = useSelector((state) => state.cards)
-    console.log(cards)
+    //console.log(cards)
     return (
         <div>
             <h1>CardList</h1>
