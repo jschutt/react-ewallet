@@ -11,7 +11,7 @@ const cardSlice = createSlice({
   name: "cards",
   initialState: {
     activeCard: {
-      cardholder: "Jonna Persson Schutt",
+      cardholder: "",
       cardnumber: "1234123412341234",
       expiry: "2121",
       cvc: "212",
@@ -31,6 +31,9 @@ const cardSlice = createSlice({
         //TODO: Gör klart den här reducern
         state.cards = action.payload;
         console.log(state.cards)
+      },
+      deleteCard: (state, action) => {
+        
       }
   },
   extraReducers: {
@@ -45,7 +48,7 @@ const cardSlice = createSlice({
       state.status = "Completed!";
 
       //TODO: Byt ut vart API:n ska hamna
-      console.log(state.myData)
+      //console.log(state.myData)
 
     },
     [getUser.rejected]: (state, action) => {

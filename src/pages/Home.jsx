@@ -7,17 +7,14 @@ import CardList from '../components/CardList.jsx'
 
 
 const Home = () => {
-    const [userData, setUserData] = useState([]);
-    // const [name, setName] = useState("");
-    // const [number, setNumber] = useState(0);
-    //const {cards} = useSelector((state) => state)
-
     const {cardholder, cardnumber, expiry, cvc} = useSelector((state) => state.cards.activeCard)
     console.log(cardholder)
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getUser())
+        if(cardholder.length === 0){
+            dispatch(getUser())
+        }
     }, [])
 
     return (

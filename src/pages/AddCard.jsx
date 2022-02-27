@@ -1,5 +1,5 @@
-import {useState} from 'react'
-import {useDispatch} from 'react-redux'
+import {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {addCard} from '../redux/cardSlice'
 import Card from '../components/Card'
@@ -9,9 +9,19 @@ const AddCard = () => {
   const [number, setNumber] = useState("");
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
+
+    //TODO: Fixa så att type blir dynamisk
   const [type, setType] = useState("");
-  
-  //TODO: Fixa så att type blir dynamisk
+
+  const {cardholder} = useSelector((state) => state.cards.activeCard)
+  console.log(cardholder);
+
+  //FIXME: Blir error när du reloadar denna sidan
+  useEffect(() => {
+      let cardholderName = document.querySelector("#cardholderName");
+      setName(cardholder);
+      cardholderName.value = cardholder;
+  }, [])
 
   const dispatch = useDispatch();
 
@@ -37,7 +47,8 @@ const AddCard = () => {
       <h1>Add a new bank card</h1>
       <Card name={name} number={number} expiry={expiry} cvc={cvc}/>
       <form>
-      <input type="text" onChange={(e) => {setName(e.target.value)}} placeholder="Cardholder's name"/>
+      {cardholder.length === 0 ? <input type="text" onChange={(e) => {setName(e.target.value)}} placeholder="Cardholder's name"/> 
+      : <input type="text" id="cardholderName" disabled/>}
         <input type="number" onChange={(e) => {setNumber(e.target.value)}} placeholder="Card number" />
         <input type="number" onChange={(e) => {setExpiry(e.target.value)}} placeholder="Valid thru" />
         <input type="number" onChange={(e) => {setCvc(e.target.value)}} placeholder="CVC" />
