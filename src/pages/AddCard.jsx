@@ -5,7 +5,7 @@ import {addCard} from '../redux/cardSlice'
 import Card from '../components/Card'
 
 const AddCard = () => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState("Cardholder's name");
   const [number, setNumber] = useState("");
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
@@ -15,17 +15,13 @@ const AddCard = () => {
 
   const myCards = useSelector((state) => state.cards.cards)
 
-  //console.log(cardholder);
-
   //FIXME: Blir error när du reloadar denna sidan
   useEffect(() => {
-      let cardholderName = document.querySelector("#cardholderName");
-      myCards.map((card) => {
+      myCards.forEach((card) => {
         if(card.active){
           setName(card.cardholder);
         }
       })
-      //cardholderName.value = name;
   }, [])
 
   const dispatch = useDispatch();
@@ -53,7 +49,7 @@ const AddCard = () => {
       <Card name={name} number={number} expiry={expiry} cvc={cvc}/>
       <form>
       {name.length === 0 ? <input type="text" onChange={(e) => {setName(e.target.value)}} placeholder="Cardholder's name"/> 
-      : <input type="text" id="cardholderName" disabled/>}
+      : <input type="text" id="cardholderName" value={name} placeholder="Cardholder's name" disabled/>}
         <input type="number" onChange={(e) => {setNumber(e.target.value)}} placeholder="Card number" />
         <input type="number" onChange={(e) => {setExpiry(e.target.value)}} placeholder="Valid thru" />
         <input type="number" onChange={(e) => {setCvc(e.target.value)}} placeholder="CVC" />

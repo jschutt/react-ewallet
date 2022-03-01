@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import {setActiveCard} from '../redux/cardSlice'
 import Card from "./Card";
 
 const CardList = () => {
@@ -9,8 +10,9 @@ const CardList = () => {
       
   };
 
-  const setActive = () => {
-    
+  const setActive = (user) => {
+    console.log(user)
+    dispatch(setActiveCard(user))
   }
 
   return (
@@ -27,7 +29,7 @@ const CardList = () => {
               cvc={card.cvc}
             />
             <button>Delete card</button>
-            <button>Set active</button>
+            <button onClick={() => setActive(card)}>Set active</button>
           </div>
         ))}
     </div>

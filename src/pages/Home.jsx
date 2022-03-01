@@ -8,14 +8,16 @@ import ActiveCard from '../components/ActiveCard.jsx'
 
 
 const Home = () => {
-    const {cardholder, cardnumber, expiry, cvc} = useSelector((state) => state.cards.activeCard)
-    console.log(cardholder)
+    //const {cardholder, cardnumber, expiry, cvc} = useSelector((state) => state.cards.activeCard)
+    const cards = useSelector((state) => state.cards.cards);
 
     const dispatch = useDispatch();
     useEffect(() => {
-        if(cardholder.length === 0){
-            dispatch(getUser())
-        }
+        cards.forEach((card) => {
+            if(card.active && card.cardholder.length === 0){
+                dispatch(getUser())
+            }
+        })
     }, [])
 
     return (

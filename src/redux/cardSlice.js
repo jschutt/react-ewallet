@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+// import { setAutoFreeze } from "immer";
+// setAutoFreeze(false)
 
 export const getUser = createAsyncThunk("cards/getUser", async () => {
     const response = await fetch("https://randomuser.me/api/");
@@ -29,7 +31,7 @@ const cardSlice = createSlice({
       },
       {
         cardholder: "",
-        cardnumber: "4545 4545 4545 4545",
+        cardnumber: "3535 3535 4545 4545",
         expiry: "2121",
         cvc: "212",
         type: "VISA",
@@ -41,17 +43,21 @@ const cardSlice = createSlice({
   },
   reducers: {
     addCard: (state, action) => {
-      if(state.cards.length === 3){
+      if(state.cards.length === 4){
         alert("Could not add another credit card. Please remove one of your cards in order to add a new one.")
       } else {
         state.cards = state.cards.concat(action.payload)
         console.log(state.cards)
       }
     },
-      updateCard: (state, action) => {
+      setActiveCard: (state, action) => {
         //TODO: Gör klart den här reducern
-        state.cards = action.payload;
-        console.log(state.cards)
+        //state.cards = action.payload;
+        state.cards.forEach((card) => {
+          card.active = false;
+        })
+        //console.log(action.payload)
+        console.log("Hello from redux")
       },
       deleteCard: (state, action) => {
         
@@ -83,6 +89,6 @@ const cardSlice = createSlice({
   }
 });
 
-export const {updateCard, addCard} = cardSlice.actions;
+export const {setActiveCard, addCard} = cardSlice.actions;
 
 export default cardSlice.reducer;
