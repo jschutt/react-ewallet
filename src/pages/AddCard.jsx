@@ -13,14 +13,19 @@ const AddCard = () => {
     //TODO: Fixa så att type blir dynamisk
   const [type, setType] = useState("");
 
-  const {cardholder} = useSelector((state) => state.cards.activeCard)
-  console.log(cardholder);
+  const myCards = useSelector((state) => state.cards.cards)
+
+  //console.log(cardholder);
 
   //FIXME: Blir error när du reloadar denna sidan
   useEffect(() => {
       let cardholderName = document.querySelector("#cardholderName");
-      setName(cardholder);
-      cardholderName.value = cardholder;
+      myCards.map((card) => {
+        if(card.active){
+          setName(card.cardholder);
+        }
+      })
+      //cardholderName.value = name;
   }, [])
 
   const dispatch = useDispatch();
@@ -47,7 +52,7 @@ const AddCard = () => {
       <h1>Add a new bank card</h1>
       <Card name={name} number={number} expiry={expiry} cvc={cvc}/>
       <form>
-      {cardholder.length === 0 ? <input type="text" onChange={(e) => {setName(e.target.value)}} placeholder="Cardholder's name"/> 
+      {name.length === 0 ? <input type="text" onChange={(e) => {setName(e.target.value)}} placeholder="Cardholder's name"/> 
       : <input type="text" id="cardholderName" disabled/>}
         <input type="number" onChange={(e) => {setNumber(e.target.value)}} placeholder="Card number" />
         <input type="number" onChange={(e) => {setExpiry(e.target.value)}} placeholder="Valid thru" />

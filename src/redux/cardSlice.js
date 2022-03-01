@@ -18,14 +18,35 @@ const cardSlice = createSlice({
       type: "VISA",
       active: true,
     },
-    cards: [],
+    cards: [
+      {
+        cardholder: "",
+        cardnumber: "4545 4545 4545 4545",
+        expiry: "2121",
+        cvc: "212",
+        type: "VISA",
+        active: true,
+      },
+      {
+        cardholder: "",
+        cardnumber: "4545 4545 4545 4545",
+        expiry: "2121",
+        cvc: "212",
+        type: "VISA",
+        active: false,
+      },
+    ],
     myData: null,
     status: null,
   },
   reducers: {
     addCard: (state, action) => {
-      state.cards = state.cards.concat(action.payload)
-      console.log(state.cards)
+      if(state.cards.length === 3){
+        alert("Could not add another credit card. Please remove one of your cards in order to add a new one.")
+      } else {
+        state.cards = state.cards.concat(action.payload)
+        console.log(state.cards)
+      }
     },
       updateCard: (state, action) => {
         //TODO: Gör klart den här reducern
@@ -43,7 +64,11 @@ const cardSlice = createSlice({
     },
     [getUser.fulfilled]: (state, action) => {
       //state.myData = action.payload;
-      state.activeCard.cardholder = action.payload.name.first
+      state.cards.forEach((card) => {
+        card.cardholder = action.payload.name.first
+      })
+
+      //state.activeCard.cardholder = action.payload.name.first
       //console.log(action.payload.name.first)
       state.status = "Completed!";
 

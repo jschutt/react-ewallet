@@ -6,7 +6,7 @@ import Payment from 'payment'
 const Card = ({name, number, expiry, cvc}) => {
     //TODO: Lägg till focused
     //console.log(PropTypes)
-    console.log(Payment)
+    //console.log(Payment)
 
     return (
         <div>

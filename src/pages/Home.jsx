@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {updateCard, getUser} from '../redux/cardSlice.js'
 import Card from '../components/Card.jsx'
 import CardList from '../components/CardList.jsx'
+import ActiveCard from '../components/ActiveCard.jsx'
 
 
 const Home = () => {
@@ -20,7 +21,7 @@ const Home = () => {
     return (
         <div>
             <h1>Home page</h1>
-            <Card name={cardholder} number={cardnumber} expiry={expiry} cvc={cvc}/>
+            <ActiveCard />
             <Link to={`/addcard`}><button>Add card</button></Link>
             <CardList />
         </div>
