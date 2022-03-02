@@ -16,7 +16,7 @@ const AddCard = () => {
   const myCards = useSelector((state) => state.cards.cards)
   const {latestId} = useSelector((state) => state.cards)
 
-  //FIXME: Blir error när du reloadar denna sidan
+  //FIXME: Error when you reload page
   useEffect(() => {
       myCards.forEach((card) => {
         if(card.active){

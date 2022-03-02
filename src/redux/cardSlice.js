@@ -65,11 +65,8 @@ const cardSlice = createSlice({
     },
     [getUser.fulfilled]: (state, action) => {
       state.cards.forEach((card) => {
-        card.cardholder = action.payload.name.first
+        card.cardholder = `${action.payload.name.first} ${action.payload.name.last}`
       })
-      //TODO: Lägg till efternamn
-      //state.activeCard.cardholder = action.payload.name.first
-      //console.log(action.payload.name.first)
       state.status = "Completed!";
     },
     [getUser.rejected]: (state, action) => {
