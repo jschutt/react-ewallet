@@ -1,18 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
-import {setActiveCard} from '../redux/cardSlice'
+import {setActiveCard, deleteCard} from '../redux/cardSlice'
 import Card from "./Card";
 
 const CardList = () => {
   const { cards } = useSelector((state) => state.cards);
   const dispatch = useDispatch();
-  console.log(cards)
-  const deleteCard = () => {
-      
+
+  const handleDeleteCard = (id) => {
+    //console.log(user.id)
+      dispatch(deleteCard(id))
   };
 
-  const setActive = (user) => {
-    console.log(user.cardholder)
-    
+  const setActive = (user) => {    
     dispatch(setActiveCard({
       cardholder: user.cardholder,
       cardnumber: user.cardnumber,
@@ -37,7 +36,7 @@ const CardList = () => {
               expiry={card.expiry}
               cvc={card.cvc}
             />
-            <button>Delete card</button>
+            <button onClick={() => handleDeleteCard(card.id)}>Delete card</button>
             <button onClick={() => setActive(card)}>Set active</button>
           </div>
         ))}

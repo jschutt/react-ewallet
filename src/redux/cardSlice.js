@@ -12,14 +12,6 @@ export const getUser = createAsyncThunk("cards/getUser", async () => {
 const cardSlice = createSlice({
   name: "cards",
   initialState: {
-    // activeCard: {
-    //   cardholder: "",
-    //   cardnumber: "1234123412341234",
-    //   expiry: "2121",
-    //   cvc: "212",
-    //   type: "VISA",
-    //   active: true,
-    // },
     cards: [
       {
         id: 1,
@@ -54,22 +46,16 @@ const cardSlice = createSlice({
       }
     },
       setActiveCard: (state, action) => {
-        //TODO: Gör klart den här reducern
-        //state.cards = action.payload;
-        console.log(action.payload)
         state.cards.forEach((card) => {
           card.active = false;
         })
-
         state.cards = state.cards.filter((card) => card.id !== action.payload.id);
         state.cards.push(action.payload)
         console.log(state.cards)
-        //state.cards = {...state.cards, ...action.payload}
-        //console.log(action.payload)
-        console.log("Hello from redux")
       },
       deleteCard: (state, action) => {
-        
+        state.cards = state.cards.filter((card) => card.id !== action.payload)
+        console.log(state.cards)
       }
   },
   extraReducers: {
@@ -78,18 +64,13 @@ const cardSlice = createSlice({
       console.log(state.status)
     },
     [getUser.fulfilled]: (state, action) => {
-      //state.myData = action.payload;
       state.cards.forEach((card) => {
         card.cardholder = action.payload.name.first
       })
-
+      //TODO: Lägg till efternamn
       //state.activeCard.cardholder = action.payload.name.first
       //console.log(action.payload.name.first)
       state.status = "Completed!";
-
-      //TODO: Byt ut vart API:n ska hamna
-      //console.log(state.myData)
-
     },
     [getUser.rejected]: (state, action) => {
         state.status = "Failed to fetch data";
@@ -98,6 +79,6 @@ const cardSlice = createSlice({
   }
 });
 
-export const {setActiveCard, addCard} = cardSlice.actions;
+export const {setActiveCard, addCard, deleteCard} = cardSlice.actions;
 
 export default cardSlice.reducer;
