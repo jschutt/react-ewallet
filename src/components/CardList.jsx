@@ -5,14 +5,23 @@ import Card from "./Card";
 const CardList = () => {
   const { cards } = useSelector((state) => state.cards);
   const dispatch = useDispatch();
-  //console.log(cards)
+  console.log(cards)
   const deleteCard = () => {
       
   };
 
   const setActive = (user) => {
-    console.log(user)
-    dispatch(setActiveCard(user))
+    console.log(user.cardholder)
+    
+    dispatch(setActiveCard({
+      cardholder: user.cardholder,
+      cardnumber: user.cardnumber,
+      expiry: user.expiry,
+      cvc: user.cvc,
+      type: user.type,
+      active: true,
+      id: user.id
+    }))
   }
 
   return (

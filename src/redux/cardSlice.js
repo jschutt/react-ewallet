@@ -12,16 +12,17 @@ export const getUser = createAsyncThunk("cards/getUser", async () => {
 const cardSlice = createSlice({
   name: "cards",
   initialState: {
-    activeCard: {
-      cardholder: "",
-      cardnumber: "1234123412341234",
-      expiry: "2121",
-      cvc: "212",
-      type: "VISA",
-      active: true,
-    },
+    // activeCard: {
+    //   cardholder: "",
+    //   cardnumber: "1234123412341234",
+    //   expiry: "2121",
+    //   cvc: "212",
+    //   type: "VISA",
+    //   active: true,
+    // },
     cards: [
       {
+        id: 1,
         cardholder: "",
         cardnumber: "4545 4545 4545 4545",
         expiry: "2121",
@@ -30,6 +31,7 @@ const cardSlice = createSlice({
         active: true,
       },
       {
+        id: 2,
         cardholder: "",
         cardnumber: "3535 3535 4545 4545",
         expiry: "2121",
@@ -38,7 +40,7 @@ const cardSlice = createSlice({
         active: false,
       },
     ],
-    myData: null,
+    latestId: 2,
     status: null,
   },
   reducers: {
@@ -47,15 +49,22 @@ const cardSlice = createSlice({
         alert("Could not add another credit card. Please remove one of your cards in order to add a new one.")
       } else {
         state.cards = state.cards.concat(action.payload)
+        state.latestId += 1;
         console.log(state.cards)
       }
     },
       setActiveCard: (state, action) => {
         //TODO: Gör klart den här reducern
         //state.cards = action.payload;
+        console.log(action.payload)
         state.cards.forEach((card) => {
           card.active = false;
         })
+
+        state.cards = state.cards.filter((card) => card.id !== action.payload.id);
+        state.cards.push(action.payload)
+        console.log(state.cards)
+        //state.cards = {...state.cards, ...action.payload}
         //console.log(action.payload)
         console.log("Hello from redux")
       },

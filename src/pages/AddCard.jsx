@@ -14,6 +14,7 @@ const AddCard = () => {
   const [type, setType] = useState("");
 
   const myCards = useSelector((state) => state.cards.cards)
+  const {latestId} = useSelector((state) => state.cards)
 
   //FIXME: Blir error när du reloadar denna sidan
   useEffect(() => {
@@ -40,6 +41,7 @@ const AddCard = () => {
       cvc: cvc,
       type: "VISA",
       active: false,
+      id: latestId + 1
     }))
   }
 
