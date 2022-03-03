@@ -29,7 +29,6 @@ const AddCard = () => {
   const dispatch = useDispatch();
 
   const handleAddCard = () => {
-    if(number === 16)
     dispatch(addCard({
       cardholder: name,
       cardnumber: number,
@@ -69,13 +68,11 @@ const AddCard = () => {
       <h1>Add a new bank card</h1>
       <Cards name={name} number={number} expiry={expiry} cvc={cvc} focused={focus} issuer={issuer} preview={true}/>
       <form>
-      {name.length === 0 ? <input type="text" onChange={(e) => {setName(e.target.value)}} placeholder="Cardholder's name"/> 
-      : <input type="text" name="name" onFocus={handleInputFocus} id="cardholderName" value={name} placeholder="Cardholder's name" disabled/>}
+        <input type="text" name="name" onFocus={handleInputFocus} id="cardholderName" value={name} placeholder="Cardholder's name" disabled/>
         <input type="number" name="number" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setNumber)} onInput={(e) => handleOnInput(e, 16)} placeholder="Card number" />
         <input type="number" name="expiry" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setExpiry)} onInput={(e) => handleOnInput(e, 4)} placeholder="Valid thru" />
         <input type="number" name="cvc" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setCvc)} onInput={(e) => handleOnInput(e, 3)} placeholder="CVC" />
         <select name="cardType" id="cardType" onChange={handleIssuerState}>
-          <option value="" selected disabled hidden>Vendor</option>
           <option value="visa">VISA</option>
           <option value="mastercard">MasterCard</option>
           <option value="unionPay">Union Pay</option>
@@ -83,10 +80,9 @@ const AddCard = () => {
           <option value="hipercard">Hipercard</option>
         </select>
       </form>
-      {number.length < 16 || expiry.length < 4 || cvc.length < 3 ? <button disabled>Add card</button> :
       <Link to="/">
       <button onClick={handleAddCard}>Add card</button>
-      </Link>}
+      </Link>
 
     </div>
   );
