@@ -3,12 +3,16 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {addCard} from '../redux/cardSlice'
 import Card from '../components/Card'
+import Cards from 'react-credit-cards'
+import 'react-credit-cards/es/styles-compiled.css';
+import React from 'react'
 
 const AddCard = () => {
   const [name, setName] = useState("Cardholder's name");
   const [number, setNumber] = useState("");
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
+  const [focus, setFocus] = useState("");
 
     //TODO: Fixa så att type blir dynamisk
   const [type, setType] = useState("");
@@ -33,7 +37,18 @@ const AddCard = () => {
     console.log(value)
   }
 
+  const handleInputFocus = ({target}) => {
+    setFocus(target.name);
+  }
+
+  //onInput={(e) => e.target.value = e.target.value.slice(0, 3)}
+
+  const handleOnInput = (e) => {
+    e.target.value = e.target.value.slice(0, 3)
+  }
+
   const handleAddCard = () => {
+
     dispatch(addCard({
       cardholder: name,
       cardnumber: number,
@@ -46,15 +61,18 @@ const AddCard = () => {
   }
 
   return (
+    //TODO: GLÖM EJ REQUIRED !!
+    //TODO: Ta bort pilarna ifrån input numbers
+    //TODO: Kolla Expiry date
     <div>
       <h1>Add a new bank card</h1>
-      <Card name={name} number={number} expiry={expiry} cvc={cvc}/>
+      <Cards name={name} number={number} expiry={expiry} cvc={cvc} focused={focus}/>
       <form>
       {name.length === 0 ? <input type="text" onChange={(e) => {setName(e.target.value)}} placeholder="Cardholder's name"/> 
-      : <input type="text" id="cardholderName" value={name} placeholder="Cardholder's name" disabled/>}
-        <input type="number" onChange={(e) => {setNumber(e.target.value)}} placeholder="Card number" />
-        <input type="number" onChange={(e) => {setExpiry(e.target.value)}} placeholder="Valid thru" />
-        <input type="number" onChange={(e) => {setCvc(e.target.value)}} placeholder="CVC" />
+      : <input type="text" name="name" onFocus={handleInputFocus} id="cardholderName" value={name} placeholder="Cardholder's name" disabled/>}
+        <input type="number" name="number" onFocus={handleInputFocus} onChange={(e) => {setNumber(e.target.value)}} onInput={(e) => e.target.value = e.target.value.slice(0, 16)} placeholder="Card number" />
+        <input type="text" name="expiry" onFocus={handleInputFocus} onChange={(e) => {setExpiry(e.target.value)}} onInput={(e) => e.target.value = e.target.value.slice(0, 4)} placeholder="Valid thru" />
+        <input type="text" name="cvc" onFocus={handleInputFocus} onChange={(e) => {setCvc(e.target.value)}} onInput={handleOnInput} placeholder="CVC" />
         <select name="cardType" id="cardType">
           <option>VISA</option>
           <option>MasterCard</option>
