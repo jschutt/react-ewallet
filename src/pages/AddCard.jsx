@@ -41,10 +41,14 @@ const AddCard = () => {
     setFocus(target.name);
   }
 
+  const handleChangeState = (e, myState) => {
+    myState(e.target.value)
+  }
+
   //onInput={(e) => e.target.value = e.target.value.slice(0, 3)}
 
-  const handleOnInput = (e) => {
-    e.target.value = e.target.value.slice(0, 3)
+  const handleOnInput = (e, num) => {
+    e.target.value = e.target.value.slice(0, num)
   }
 
   const handleAddCard = () => {
@@ -70,9 +74,9 @@ const AddCard = () => {
       <form>
       {name.length === 0 ? <input type="text" onChange={(e) => {setName(e.target.value)}} placeholder="Cardholder's name"/> 
       : <input type="text" name="name" onFocus={handleInputFocus} id="cardholderName" value={name} placeholder="Cardholder's name" disabled/>}
-        <input type="number" name="number" onFocus={handleInputFocus} onChange={(e) => {setNumber(e.target.value)}} onInput={(e) => e.target.value = e.target.value.slice(0, 16)} placeholder="Card number" />
-        <input type="text" name="expiry" onFocus={handleInputFocus} onChange={(e) => {setExpiry(e.target.value)}} onInput={(e) => e.target.value = e.target.value.slice(0, 4)} placeholder="Valid thru" />
-        <input type="text" name="cvc" onFocus={handleInputFocus} onChange={(e) => {setCvc(e.target.value)}} onInput={handleOnInput} placeholder="CVC" />
+        <input type="number" name="number" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setNumber)} onInput={(e) => handleOnInput(e, 16)} placeholder="Card number" />
+        <input type="number" name="expiry" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setExpiry)} onInput={(e) => handleOnInput(e, 4)} placeholder="Valid thru" />
+        <input type="number" name="cvc" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setCvc)} onInput={(e) => handleOnInput(e, 3)} placeholder="CVC" />
         <select name="cardType" id="cardType">
           <option>VISA</option>
           <option>MasterCard</option>
