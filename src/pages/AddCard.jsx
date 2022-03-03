@@ -12,7 +12,7 @@ const AddCard = () => {
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
-  const [issuer, setIssuer] = useState("");
+  const [issuer, setIssuer] = useState("default");
 
   const myCards = useSelector((state) => state.cards.cards)
   const {latestId} = useSelector((state) => state.cards)
@@ -29,6 +29,7 @@ const AddCard = () => {
   const dispatch = useDispatch();
 
   const handleAddCard = () => {
+    if(number === 16)
     dispatch(addCard({
       cardholder: name,
       cardnumber: number,
@@ -62,7 +63,8 @@ const AddCard = () => {
   return (
     //TODO: GLÖM EJ REQUIRED !!
     //TODO: Ta bort pilarna ifrån input numbers
-    //TODO: Kolla Expiry date
+    //TODO: Kolla Expiry date (max månad)
+    //TODO: Gör så att Add card inte funkar om cardtype är "Vendor"
     <div>
       <h1>Add a new bank card</h1>
       <Cards name={name} number={number} expiry={expiry} cvc={cvc} focused={focus} issuer={issuer} preview={true}/>
@@ -73,13 +75,19 @@ const AddCard = () => {
         <input type="number" name="expiry" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setExpiry)} onInput={(e) => handleOnInput(e, 4)} placeholder="Valid thru" />
         <input type="number" name="cvc" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setCvc)} onInput={(e) => handleOnInput(e, 3)} placeholder="CVC" />
         <select name="cardType" id="cardType" onChange={handleIssuerState}>
-          <option value="visa" >VISA</option>
-          <option value="mastercard" onChange={(e) => handleChangeState(e, setIssuer)}>MasterCard</option>
+          <option value="" selected disabled hidden>Vendor</option>
+          <option value="visa">VISA</option>
+          <option value="mastercard">MasterCard</option>
+          <option value="unionPay">Union Pay</option>
+          <option value="discover">Discover</option>
+          <option value="hipercard">Hipercard</option>
         </select>
       </form>
+      {number.length < 16 || expiry.length < 4 || cvc.length < 3 ? <button disabled>Add card</button> :
       <Link to="/">
       <button onClick={handleAddCard}>Add card</button>
-      </Link>
+      </Link>}
+
     </div>
   );
 };

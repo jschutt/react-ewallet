@@ -19,7 +19,7 @@ const cardSlice = createSlice({
         cardnumber: "4545 4545 4545 4545",
         expiry: "2121",
         cvc: "212",
-        issuer: "",
+        issuer: "visa",
         active: true,
       },
       {
@@ -28,7 +28,7 @@ const cardSlice = createSlice({
         cardnumber: "3535 3535 4545 4545",
         expiry: "2121",
         cvc: "212",
-        issuer: "",
+        issuer: "mastercard",
         active: false,
       },
     ],

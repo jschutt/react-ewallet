@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import Card from "./Card.jsx";
+import Cards from 'react-credit-cards'
 
 const ActiveCard = () => {
   const { cards } = useSelector((state) => state.cards);
@@ -11,11 +11,13 @@ const ActiveCard = () => {
         (card, i) =>
           card.active && (
             <div key={i}>
-              <Card
+              <Cards
                 name={card.cardholder}
                 number={card.cardnumber}
                 expiry={card.expiry}
                 cvc={card.cvc}
+                issuer={card.issuer}
+                preview={true}
               />
             </div>
           )

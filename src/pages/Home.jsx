@@ -1,8 +1,7 @@
 import {Link} from 'react-router-dom'
 import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {updateCard, getUser} from '../redux/cardSlice.js'
-import Card from '../components/Card.jsx'
+import {getUser} from '../redux/cardSlice.js'
 import CardList from '../components/CardList.jsx'
 import ActiveCard from '../components/ActiveCard.jsx'
 
