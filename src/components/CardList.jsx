@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import {setActiveCard, deleteCard} from '../redux/cardSlice'
 import Cards from 'react-credit-cards'
+import s from './css/CardList.module.scss'
 
 const CardList = () => {
   const { cards } = useSelector((state) => state.cards);
@@ -28,7 +29,7 @@ const CardList = () => {
       {cards.length > 0 &&
         cards.map((card, i) => (
           !card.active &&
-          <div key={i}>
+          <div key={i} className={s.cardContainer}>
             <Cards
               name={card.cardholder}
               number={card.cardnumber}
@@ -37,8 +38,10 @@ const CardList = () => {
               issuer={card.issuer}
               preview={true}
             />
+            <div className={s.cardCover}>
             <button onClick={() => handleDeleteCard(card.id)}>Delete card</button>
             <button onClick={() => setActive(card)}>Set active</button>
+            </div>
           </div>
         ))}
     </div>

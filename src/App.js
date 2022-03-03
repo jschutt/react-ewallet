@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import {Switch, Route} from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import AddCard from './pages/AddCard.jsx'

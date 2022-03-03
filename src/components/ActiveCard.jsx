@@ -6,7 +6,6 @@ const ActiveCard = () => {
 
   return (
     <div>
-      <h1>Active Card</h1>
       {cards.map(
         (card, i) =>
           card.active && (
