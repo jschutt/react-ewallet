@@ -18,6 +18,8 @@
 .App-header {
   background-color: $primary-background;
   min-height: 100vh;
+  width: 640px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

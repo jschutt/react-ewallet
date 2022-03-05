@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import Cards from 'react-credit-cards'
+import s from './css/ActiveCard.module.scss'
 
 const ActiveCard = () => {
   const { cards } = useSelector((state) => state.cards);
@@ -9,7 +10,7 @@ const ActiveCard = () => {
       {cards.map(
         (card, i) =>
           card.active && (
-            <div key={i}>
+            <div key={i} className={s.activeCardContainer}>
               <Cards
                 name={card.cardholder}
                 number={card.cardnumber}

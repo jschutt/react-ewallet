@@ -3,7 +3,9 @@ import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getUser} from '../redux/cardSlice.js'
 import CardList from '../components/CardList.jsx'
+import CardListCarousel from '../components/CardListCarousel.jsx'
 import ActiveCard from '../components/ActiveCard.jsx'
+
 
 
 const Home = () => {
@@ -24,7 +26,9 @@ const Home = () => {
             <h1>Home page</h1>
             <ActiveCard />
             <Link to={`/addcard`}><button>Add card</button></Link>
-            <CardList />
+            <CardListCarousel />
+            {/* <CardList /> */}
+            
         </div>
     )
 }
