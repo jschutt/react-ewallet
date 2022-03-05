@@ -2,7 +2,7 @@ import React from 'react'
 import Cards from 'react-credit-cards'
 import {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {addCard} from '../redux/cardSlice'
 import 'react-credit-cards/es/styles-compiled.css';
 
@@ -12,12 +12,11 @@ const AddCard = () => {
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
-  const [issuer, setIssuer] = useState("default");
+  const [issuer, setIssuer] = useState("visa");
 
   const myCards = useSelector((state) => state.cards.cards)
   const {latestId} = useSelector((state) => state.cards)
 
-  //FIXME: Error when you reload page
   useEffect(() => {
       myCards.forEach((card) => {
         if(card.active){
@@ -26,18 +25,32 @@ const AddCard = () => {
       })
   }, [])
 
+
+  const history = useHistory();
   const dispatch = useDispatch();
 
+  const redirectPage = () => {
+    history.push("/");
+  }
+
   const handleAddCard = () => {
-    dispatch(addCard({
-      cardholder: name,
-      cardnumber: number,
-      expiry: expiry,
-      cvc: cvc,
-      issuer: issuer,
-      active: false,
-      id: latestId + 1
-    }))
+    let month = expiry.slice(0, 2);
+    month = +month;
+
+    if(month > 12){
+      alert("Invalid expiry date. Please select the correct month and year.")
+    } else {
+      dispatch(addCard({
+        cardholder: name,
+        cardnumber: number,
+        expiry: expiry,
+        cvc: cvc,
+        issuer: issuer,
+        active: false,
+        id: latestId + 1
+      }))
+      redirectPage();
+    }
   }
 
   const handleInputFocus = ({target}) => {
@@ -62,8 +75,7 @@ const AddCard = () => {
   return (
     //TODO: GLÖM EJ REQUIRED !!
     //TODO: Ta bort pilarna ifrån input numbers
-    //TODO: Kolla Expiry date (max månad)
-    //TODO: Gör så att Add card inte funkar om cardtype är "Vendor"
+
     <div>
       <h1>Add a new bank card</h1>
       <Cards name={name} number={number} expiry={expiry} cvc={cvc} focused={focus} issuer={issuer} preview={true}/>
@@ -80,10 +92,7 @@ const AddCard = () => {
           <option value="hipercard">Hipercard</option>
         </select>
       </form>
-      <Link to="/">
-      <button onClick={handleAddCard}>Add card</button>
-      </Link>
-
+      <button onClick={handleAddCard} disabled={(number.length === 16 && expiry.length === 4 && cvc.length === 3 ? false : true)}>Add card</button>
     </div>
   );
 };
