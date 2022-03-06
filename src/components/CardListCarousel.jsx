@@ -35,7 +35,7 @@ const CardList = () => {
   };
     //TODO: ADD EMPTY CARD IF LIST IS EMPTY
   return (
-    <div>
+    <div className={s.cardListBody}>
       <h1>All cards</h1>
       <Carousel className={s.carousel} activeIndex={index} onSelect={handleSelect} interval={null} variant={'dark'} >
         {cards.length > 0 &&
