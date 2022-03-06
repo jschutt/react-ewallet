@@ -33,7 +33,7 @@ const CardList = () => {
       })
     );
   };
-
+    //TODO: ADD EMPTY CARD IF LIST IS EMPTY
   return (
     <div>
       <h1>All cards</h1>
@@ -64,6 +64,13 @@ const CardList = () => {
                 </Carousel.Item>
               )
           )}
+        {cards.length === 1 && (
+          <Carousel.Item>
+              <div className={s.emptyCardListContainer}>
+                  <p>+</p>
+              </div>
+          </Carousel.Item>
+      )}
       </Carousel>
     </div>
   );

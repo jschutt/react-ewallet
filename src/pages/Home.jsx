@@ -25,7 +25,9 @@ const Home = () => {
             <div className={s.bodyContainer}>
             <ActiveCard />
             <CardListCarousel />
-            <Link to={`/addcard`}><button>Add card</button></Link>
+            <div className={s.homeAddBtnContainer}>
+            <Link to={`/addcard`}><button className={s.homeAddBtn}>New card</button></Link>
+            </div>
             {/* <CardList /> */}
             </div>
         </div>
