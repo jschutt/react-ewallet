@@ -1,0 +1,47 @@
+@import '../../index.scss';
+
+.pageContainer {
+    width: 670px;
+    button {
+        color: $primary-color-btn;
+        background-color: $primary-background-btn;
+        border-radius: 50px;
+        border: none;
+    }
+}
+
+.bodyContainer {
+    background-color: $primary-background;
+    padding: 20px 0px 20px 0px;
+    margin: 0px;
+    .addCardTitle {
+        font-size: 36px;
+        margin: 10px 0px 10px 0px;
+    }
+}
+
+.addCardContainer {
+    cursor: default;
+}
+
+.cardForm {
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto 20px auto;
+    width: 55%;
+    label {
+        color: $secondary-color;
+        font-size: 20px;
+        text-align: left;
+    }
+    input {
+        border-radius: 5px;
+        border: 1px solid $secondary-color;
+        margin: 2px 0px 10px 0px;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+}

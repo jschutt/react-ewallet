@@ -2,8 +2,10 @@ import React from 'react'
 import Cards from 'react-credit-cards'
 import {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {Link, useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import {addCard} from '../redux/cardSlice'
+import Header from '../components/Header.jsx'
+import s from './css/Pages.module.scss'
 import 'react-credit-cards/es/styles-compiled.css';
 
 const AddCard = () => {
@@ -24,7 +26,6 @@ const AddCard = () => {
         }
       })
   }, [])
-
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -73,26 +74,31 @@ const AddCard = () => {
   }
 
   return (
-    //TODO: GLÖM EJ REQUIRED !!
-    //TODO: Ta bort pilarna ifrån input numbers
-
-    <div>
-      <h1>Add a new bank card</h1>
+    <div className={s.pageContainer}>
+      <Header />
+      <div className={s.bodyContainer}>
+      <h2 className={s.addCardTitle}>Add a new bank card</h2>
+      <div className={s.addCardContainer}>
       <Cards name={name} number={number} expiry={expiry} cvc={cvc} focused={focus} issuer={issuer} preview={true}/>
-      <form>
-        <input type="text" name="name" onFocus={handleInputFocus} id="cardholderName" value={name} placeholder="Cardholder's name" disabled/>
-        <input type="number" name="number" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setNumber)} onInput={(e) => handleOnInput(e, 16)} placeholder="Card number" />
-        <input type="number" name="expiry" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setExpiry)} onInput={(e) => handleOnInput(e, 4)} placeholder="Valid thru" />
-        <input type="number" name="cvc" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setCvc)} onInput={(e) => handleOnInput(e, 3)} placeholder="CVC" />
-        <select name="cardType" id="cardType" onChange={handleIssuerState}>
+      </div>
+      <form className={s.cardForm}>
+        <label htmlFor="cardholderName">Cardholder's name</label>
+        <input type="text" name="name" onFocus={handleInputFocus} id="cardholderName" value={name} placeholder="Cardholder's name" disabled required/>
+        <label htmlFor="cardNumber">Card number</label>
+        <input type="number" name="number" id="cardNumber" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setNumber)} onInput={(e) => handleOnInput(e, 16)} placeholder="" required/>
+        <label htmlFor="expiry">Valid thru</label>
+        <input type="number" name="expiry" id="expiry" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setExpiry)} onInput={(e) => handleOnInput(e, 4)} placeholder="MM/YY" required/>
+        <input type="number" name="cvc" onFocus={handleInputFocus} onChange={(e) => handleChangeState(e, setCvc)} onInput={(e) => handleOnInput(e, 3)} placeholder="CVC" required/>
+        <label htmlFor="cardType">Vendor</label>
+        <select name="cardType" id="cardType" onChange={handleIssuerState} required>
           <option value="visa">VISA</option>
           <option value="mastercard">MasterCard</option>
-          <option value="unionPay">Union Pay</option>
           <option value="discover">Discover</option>
           <option value="hipercard">Hipercard</option>
         </select>
       </form>
-      <button onClick={handleAddCard} disabled={(number.length === 16 && expiry.length === 4 && cvc.length === 3 ? false : true)}>Add card</button>
+      <button className={s.addCardBtn} onClick={handleAddCard} disabled={(number.length === 16 && expiry.length === 4 && cvc.length === 3 ? false : true)}>Add card</button>
+      </div>
     </div>
   );
 };

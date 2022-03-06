@@ -8,6 +8,7 @@
     background-color: lightpink;
     border-radius: 16px;
     .cardCover {
+        cursor: default;
         position: absolute;
         bottom: 0;
         border-radius: 16px;
@@ -29,16 +30,21 @@
 }
 
 .carousel{
-
+    margin: 100px 0px 0px 0px;
     padding: 0px 90px 0px 90px;
     color: blue !important;
+}
+
+.carouselItem {
+    padding: 0px;
+    margin: 0px;
 }
 .carousel-control-next {
     
 }
 
 .carousel-indicators {
-    position: relative !important;
+    
 }
 
 .carousel-inner{

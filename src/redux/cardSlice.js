@@ -32,6 +32,7 @@ const cardSlice = createSlice({
         active: false,
       },
     ],
+    profileImg: null,
     latestId: 2,
     status: null,
   },
@@ -42,7 +43,6 @@ const cardSlice = createSlice({
       } else {
         state.cards = state.cards.concat(action.payload)
         state.latestId += 1;
-        console.log(state.cards)
       }
     },
       setActiveCard: (state, action) => {
@@ -51,11 +51,9 @@ const cardSlice = createSlice({
         })
         state.cards = state.cards.filter((card) => card.id !== action.payload.id);
         state.cards.push(action.payload)
-        console.log(state.cards)
       },
       deleteCard: (state, action) => {
         state.cards = state.cards.filter((card) => card.id !== action.payload)
-        console.log(state.cards)
       }
   },
   extraReducers: {
@@ -67,7 +65,9 @@ const cardSlice = createSlice({
       state.cards.forEach((card) => {
         card.cardholder = `${action.payload.name.first} ${action.payload.name.last}`
       })
+      state.profileImg = action.payload.picture.large;
       state.status = "Completed!";
+      console.log(state.status)
     },
     [getUser.rejected]: (state, action) => {
         state.status = "Failed to fetch data";

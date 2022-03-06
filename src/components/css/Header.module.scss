@@ -1,0 +1,33 @@
+@import '../../index.scss';
+
+.headerContainer {
+    display: flex;
+    align-items: center;
+    padding: 10px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
+    background-color: $primary-background;
+        .myCardTitle{
+            width: 100%;
+            margin: 0px;
+            padding-left: 35px;
+            font-size: 45px;
+            text-align: left;
+         }
+         .userName {
+             margin: 0px;
+             padding-top: 15px;
+             width: 40%;
+             font-size: 20px;
+         }
+         .imgContainer {
+             width: 25%;
+             
+         }
+         .profileImg {
+            border-radius: 50px;
+            width: 96px;
+            height: 96px;
+            margin: 0px !important;
+         }
+
+}

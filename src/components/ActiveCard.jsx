@@ -6,11 +6,12 @@ const ActiveCard = () => {
   const { cards } = useSelector((state) => state.cards);
 
   return (
-    <div>
+    <div className={s.activeCardContainer}>
+      <h2 className={s.activeCardTitle}>Active card</h2>
       {cards.map(
         (card, i) =>
           card.active && (
-            <div key={i} className={s.activeCardContainer}>
+            <div key={i} className={s.activeCard}>
               <Cards
                 name={card.cardholder}
                 number={card.cardnumber}

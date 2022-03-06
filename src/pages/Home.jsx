@@ -1,15 +1,13 @@
 import {Link} from 'react-router-dom'
-import {useEffect, useState} from 'react'
+import {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getUser} from '../redux/cardSlice.js'
-import CardList from '../components/CardList.jsx'
+import Header from '../components/Header.jsx'
 import CardListCarousel from '../components/CardListCarousel.jsx'
 import ActiveCard from '../components/ActiveCard.jsx'
-
-
+import s from './css/Pages.module.scss'
 
 const Home = () => {
-    //const {cardholder, cardnumber, expiry, cvc} = useSelector((state) => state.cards.activeCard)
     const cards = useSelector((state) => state.cards.cards);
 
     const dispatch = useDispatch();
@@ -22,13 +20,14 @@ const Home = () => {
     }, [])
 
     return (
-        <div>
-            <h1>Home page</h1>
+        <div className={s.pageContainer}>
+            <Header />
+            <div className={s.bodyContainer}>
             <ActiveCard />
-            <Link to={`/addcard`}><button>Add card</button></Link>
             <CardListCarousel />
+            <Link to={`/addcard`}><button>Add card</button></Link>
             {/* <CardList /> */}
-            
+            </div>
         </div>
     )
 }

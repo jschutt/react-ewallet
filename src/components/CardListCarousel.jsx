@@ -36,7 +36,7 @@ const CardList = () => {
 
   return (
     <div>
-      <h1>CardList</h1>
+      <h1>All cards</h1>
       <Carousel className={s.carousel} activeIndex={index} onSelect={handleSelect} interval={null} variant={'dark'} >
         {cards.length > 0 &&
           cards.map(
