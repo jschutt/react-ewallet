@@ -7,7 +7,8 @@ const Header = () => {
 
     return (
         <header className={s.headerContainer}>
-            <h1 className={s.myCardTitle}>{cards[0].cardholder}</h1>
+            <h1 className={s.myCardTitle}>My credit cards</h1>
+            <p className={s.userName}>{cards[0].cardholder}</p>
             {/* <p className={s.userName}>{cards[0].cardholder}</p> */}
             <div className={s.imgContainer}>
             <img src={profileImg} alt="Profile picture" className={s.profileImg}/>

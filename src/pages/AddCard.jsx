@@ -77,7 +77,7 @@ const AddCard = () => {
     <div className={s.pageContainer}>
       <Header />
       <div className={s.bodyContainer}>
-      <h2 className={s.addCardTitle}>Add a new bank card</h2>
+      <h2 className={s.addCardTitle}>New bank card</h2>
       <div className={s.addCardContainer}>
       <Cards name={name} number={number} expiry={expiry} cvc={cvc} focused={focus} issuer={issuer} preview={true}/>
       </div>

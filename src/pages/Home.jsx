@@ -20,7 +20,7 @@ const Home = () => {
     }, [])
 
     return (
-        <div className={s.pageContainer}>
+        <div className={s.pageContainer} style={cards[0].cardholder.length > 0 ? {display: 'block'} : {display: 'none'} }>
             <Header />
             <div className={s.bodyContainer}>
             <ActiveCard />

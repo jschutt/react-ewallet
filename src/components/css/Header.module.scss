@@ -1,12 +1,13 @@
 @import '../../index.scss';
 
 .headerContainer {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-areas: 'myCard myCard myCard profileImg' 'user user user profileImg';
     padding: 10px 0px 10px 0px;
     margin: 10px 0px 10px 0px;
     background-color: $primary-background;
         .myCardTitle{
+            grid-area: myCard;
             width: 100%;
             margin: 0px;
             padding-left: 35px;
@@ -14,14 +15,14 @@
             text-align: left;
          }
          .userName {
+             grid-area: user;
              margin: 0px;
-             padding-top: 15px;
-             width: 40%;
-             font-size: 20px;
+             font-size: 24px;
+             text-align: left;
+             padding-left: 35px;
          }
          .imgContainer {
-             width: 25%;
-             
+            grid-area: profileImg;
          }
          .profileImg {
             box-shadow: 2px 2px 5px 0px lightgrey;

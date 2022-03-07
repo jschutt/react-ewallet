@@ -17,26 +17,30 @@ const CardList = () => {
   };
 
   const handleDeleteCard = (id) => {
-    dispatch(deleteCard(id));
+    if(window.confirm("Are you certain you wish to delete this card?")){
+      dispatch(deleteCard(id));
+    }
   };
 
   const setActive = (user) => {
-    dispatch(
-      setActiveCard({
-        cardholder: user.cardholder,
-        cardnumber: user.cardnumber,
-        expiry: user.expiry,
-        cvc: user.cvc,
-        issuer: user.issuer,
-        active: true,
-        id: user.id,
-      })
-    );
+    if(window.confirm("Set this card as active?")){
+      dispatch(
+        setActiveCard({
+          cardholder: user.cardholder,
+          cardnumber: user.cardnumber,
+          expiry: user.expiry,
+          cvc: user.cvc,
+          issuer: user.issuer,
+          active: true,
+          id: user.id,
+        })
+      );
+    }
   };
     //TODO: ADD EMPTY CARD IF LIST IS EMPTY
   return (
     <div className={s.cardListBody}>
-      <h1>All cards</h1>
+      <h1 className={s.allCardsTitle}>All cards</h1>
       <Carousel className={s.carousel} activeIndex={index} onSelect={handleSelect} interval={null} variant={'dark'} >
         {cards.length > 0 &&
           cards.map(

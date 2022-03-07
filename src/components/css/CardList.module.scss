@@ -3,6 +3,14 @@
 .cardListBody {
     width: 550px;
     margin: auto;
+    margin-top: 20px;
+    padding-top: 40px;
+    border-top: 2px solid $hightlight-color;
+    
+    .allCardsTitle {
+        color: $primary-color;
+        font-size: 28px;
+    }
 }
 
 .cardListContainer {
@@ -27,6 +35,7 @@
         font-size: 20px;
 
         button {
+            visibility: visible;
             margin-right: 5px;
             margin-left: 5px;
             margin-top: 25%;
@@ -49,7 +58,7 @@
     padding-bottom: 20px;
     p {
         color: lightgrey;
-        font-size: 115px;
+        font-size: 103px;
         font-weight: bold;
         margin: 0;
         text-align: center;
@@ -57,22 +66,9 @@
 }
 
 .carousel{
-    margin: 100px 0px 0px 0px;
+    margin: 20px 0px 0px 0px;
     padding: 0px 90px 0px 90px;
-}
-
-.carouselItem {
-    padding: 0px;
-    margin: 0px;
-}
-.carousel-control-next {
-    
-}
-
-.carousel-indicators {
-    
-}
-
-.carousel-inner{
-    overflow:auto !important;
+    button {
+        visibility: hidden;
+    }
 }
