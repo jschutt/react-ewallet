@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import s from "./css/CardList.module.scss";
 import './css/CardList.module.scss'
 
-const CardList = () => {
+const CardListCarousel = () => {
   const [index, setIndex] = useState(0);
   const { cards } = useSelector((state) => state.cards);
   const dispatch = useDispatch();
@@ -37,7 +37,6 @@ const CardList = () => {
       );
     }
   };
-    //TODO: ADD EMPTY CARD IF LIST IS EMPTY
   return (
     <div className={s.cardListBody}>
       <h1 className={s.allCardsTitle}>All cards</h1>
@@ -80,4 +79,4 @@ const CardList = () => {
   );
 };
 
-export default CardList;
+export default CardListCarousel;

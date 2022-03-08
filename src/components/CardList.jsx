@@ -3,6 +3,8 @@ import {setActiveCard, deleteCard} from '../redux/cardSlice'
 import Cards from 'react-credit-cards'
 import s from './css/CardList.module.scss'
 
+//This is the old cardlist, new one is CardListCarousel
+
 const CardList = () => {
   const { cards } = useSelector((state) => state.cards);
   const dispatch = useDispatch();

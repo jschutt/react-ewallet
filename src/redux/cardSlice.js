@@ -1,6 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import { setAutoFreeze } from "immer";
-// setAutoFreeze(false)
 
 export const getUser = createAsyncThunk("cards/getUser", async () => {
     const response = await fetch("https://randomuser.me/api/");
@@ -17,20 +15,11 @@ const cardSlice = createSlice({
         id: 1,
         cardholder: "",
         cardnumber: "4545 4545 4545 4545",
-        expiry: "2121",
+        expiry: "1125",
         cvc: "212",
         issuer: "visa",
         active: true,
       },
-      // {
-      //   id: 2,
-      //   cardholder: "",
-      //   cardnumber: "3535 3535 4545 4545",
-      //   expiry: "2121",
-      //   cvc: "212",
-      //   issuer: "mastercard",
-      //   active: false,
-      // },
     ],
     profileImg: null,
     latestId: 2,

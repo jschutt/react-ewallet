@@ -39,7 +39,7 @@ const AddCard = () => {
     month = +month;
 
     if(month > 12){
-      alert("Invalid expiry date. Please select the correct month and year.")
+      alert("Invalid expiry date. Please select the correct month.")
     } else {
       dispatch(addCard({
         cardholder: name,
@@ -61,8 +61,6 @@ const AddCard = () => {
   const handleChangeState = (e, myState) => {
     myState(e.target.value)
   }
-
-  //onInput={(e) => e.target.value = e.target.value.slice(0, 3)}
 
   const handleOnInput = (e, num) => {
     e.target.value = e.target.value.slice(0, num)

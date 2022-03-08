@@ -28,7 +28,6 @@ const Home = () => {
             <div className={s.homeAddBtnContainer}>
             <Link to={`/addcard`}><button className={s.homeAddBtn}>New card</button></Link>
             </div>
-            {/* <CardList /> */}
             </div>
         </div>
     )
